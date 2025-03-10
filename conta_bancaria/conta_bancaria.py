@@ -1,3 +1,15 @@
+
+menu = """
+        ******* Bem vindo ao Leopoldus Bank ******* 
+
+        Digite um número para uma das opções abaixo:
+
+        1 - Depósito
+        2 - Saque
+        3 - Extrato
+        4 - Sair
+"""
+
 class ContaBancaria:
     def __init__(self, titular, saldo_inicial=0):
         self.titular = titular
@@ -5,9 +17,7 @@ class ContaBancaria:
         self.extrato = []
         self.saques_realizados = 0
         self.limite_saques_diario = 3
-        self.limite_valor_saque = 500
-
-        
+        self.limite_valor_saque = 500        
 
     def depositar(self, valor):
         if valor > 0:
@@ -41,28 +51,35 @@ class ContaBancaria:
         print(f"Saldo atual: R${self.saldo:.2f}\n")
 
 
-# Exemplo de uso
 conta = ContaBancaria("Helder", 2000)
-conta1 = ContaBancaria("Carla", 3000)
-conta2 = ContaBancaria("Gabriel", 1000)
-conta3 = ContaBancaria("Camila", 1000)
-conta.depositar(500)
-conta.sacar(200)
-conta.sacar(500)
-conta.sacar(300)
-conta.exibir_extrato()
-conta1.depositar(500)
-conta1.sacar(200)
-conta1.sacar(500)
-conta1.sacar(300)
-conta1.exibir_extrato()
-conta3.depositar(500)
-conta3.sacar(200)
-conta3.sacar(500)
-conta3.sacar(300)
-conta3.exibir_extrato()
-conta2.depositar(500)
-conta2.sacar(200)
-conta2.sacar(500)
-conta2.sacar(300)
-conta2.exibir_extrato()
+
+while True:
+    opcao = input(menu).strip()  
+
+    if opcao == "1":
+        valor = float(input("Informe o valor do depósito: "))
+        conta.depositar(valor)
+
+    elif opcao == "2":
+        valor = float(input("Informe o valor do saque: "))
+        conta.sacar(valor)
+
+    elif opcao == "3":
+        conta.exibir_extrato()
+
+    elif opcao == "4":
+        print("Obrigado por usar o Leopoldus Bank. Até logo!")
+        break
+
+    else:
+        print("Opção inválida, tente novamente.")
+
+
+# Exemplo de uso
+#conta = ContaBancaria("Helder", 2000)
+#conta1 = ContaBancaria("Carla", 3000)
+#conta2 = ContaBancaria("Gabriel", 1000)
+#conta3 = ContaBancaria("Camila", 1000)
+
+
+
